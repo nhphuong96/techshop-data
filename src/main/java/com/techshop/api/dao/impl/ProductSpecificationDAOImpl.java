@@ -41,7 +41,7 @@ public class ProductSpecificationDAOImpl extends GenericDAOImpl<ProductSpecifica
 
 	@Override
 	public Result<Long> deleteAllByProductId(Long productId) {
-		Query query = entityManager.createNativeQuery("DELETE FROM ProductSpecification a WHERE a.product = " + productId);
+		Query query = entityManager.createQuery("DELETE FROM ProductSpecification a WHERE a.product = " + productId);
 		logger.debug("Delete in table ProductSpecification with product id is " + productId);
 		try {
 			int numsOfRecord = query.executeUpdate();

@@ -1,7 +1,7 @@
 package com.techshop.api.entity;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,7 +42,7 @@ public class Order {
 	private Customer customer;
 	
 	@OneToMany(mappedBy = "orderId")
-	private Set<OrderDetail> orderDetails;
+	private List<OrderDetail> orderDetails;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "payment_id")

@@ -10,22 +10,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import com.techshop.api.entity.Product;
-import com.techshop.api.model.ProductInformation;
-import com.techshop.api.service.ProductService;
+import com.techshop.api.dao.OrderDetailDAO;
+import com.techshop.api.entity.OrderDetail;
 import com.techshop.api.util.Result;
 
-@Path("/product")
-public class ProductController {
-
+@Path("/order")
+public class OrderDetailController {
 	@EJB
-	private ProductService productService;
+	private OrderDetailDAO orderDetailDAO;
 	
 	@POST
 	@Path("/save")
 	@Produces("application/json; charset=UTF-8")
-	public Response save(ProductInformation object) {
-		Result<Product> saveResult = productService.saveProduct(object);
+	public Response save(OrderDetail object) {
+		Result<OrderDetail> saveResult = orderDetailDAO.save(object);
 		return Response.status(200).entity(saveResult).build();
 	}
 	
@@ -33,7 +31,7 @@ public class ProductController {
 	@Path("/deleteById")
 	@Produces("application/json; charset=UTF-8")
 	public Response deleteById(@QueryParam("id") Long id) {
-		Result<Long> deleteResult = productService.deleteProduct(id);
+		Result<Long> deleteResult = orderDetailDAO.delete(id);
 		return Response.status(200).entity(deleteResult).build();
 	}
 	
@@ -41,7 +39,7 @@ public class ProductController {
 	@Path("/get")
 	@Produces("application/json; charset=UTF-8")
 	public Response get(@QueryParam("id") Long id) {
-		Result<ProductInformation> getResult = productService.getProduct(id);
+		Result<OrderDetail> getResult = orderDetailDAO.findOne(id);
 		if (getResult.getSuccess() == false) {
 			return Response.status(200).entity(getResult).build();
 		}
@@ -52,7 +50,7 @@ public class ProductController {
 	@Path("/getAll")
 	@Produces("application/json; charset=UTF-8")
 	public Response getAll() {
-		Result<List<ProductInformation>> getAllResult = productService.getAllProduct();
+		Result<List<OrderDetail>> getAllResult = orderDetailDAO.findAll();
 		if (getAllResult.getSuccess() == false) {
 			return Response.status(200).entity(getAllResult).build();
 		}
@@ -62,12 +60,11 @@ public class ProductController {
 	@POST
 	@Path("/update")
 	@Produces("application/json; charset=UTF-8")
-	public Response update(Product product) {
-		if (product.getId() == null) {
+	public Response update(OrderDetail order) {
+		if (order.getOrderId().getId() == null) {
 			return Response.status(200).entity(new Result<>(null, "Primary key is required", false)).build();
 		}
-		Result<Product> updateResult = productService.updateProduct(product);
+		Result<OrderDetail> updateResult = orderDetailDAO.update(order);
 		return Response.status(200).entity(updateResult).build();
 	}
-	
 }

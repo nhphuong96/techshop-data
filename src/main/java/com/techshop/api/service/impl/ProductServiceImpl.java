@@ -119,4 +119,10 @@ public class ProductServiceImpl implements ProductService {
 		return new Result<List<ProductInformation>>(productInfos, "Success", true);
 	}
 
+	@Override
+	public Result<Product> updateProduct(Product product) {
+		Result<Product> result = productDao.update(product);
+		return result;
+	}
+
 }
