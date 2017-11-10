@@ -9,6 +9,7 @@ import javax.ws.rs.core.Application;
 import com.techshop.api.controller.CategoryController;
 import com.techshop.api.controller.CustomerController;
 import com.techshop.api.controller.ManufacturerController;
+import com.techshop.api.controller.OrderController;
 import com.techshop.api.controller.OrderDetailController;
 import com.techshop.api.controller.ProductController;
 import com.techshop.api.controller.SpecificationTypeController;
@@ -23,6 +24,7 @@ public class HelloWorldApplication extends Application {
 		s.add(ManufacturerController.class);
 		s.add(CustomerController.class);
 		s.add(OrderDetailController.class);
+		s.add(OrderController.class);
 		return s;
 	}
 }
