@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="order_detail")
@@ -29,14 +28,6 @@ public class OrderDetail implements Serializable {
 	private Order orderId;
 	
 	private Integer quantity;
-	
-	@Transient
-	private Integer totalPrice;
-	
-	@Transient
-	public Integer getTotalPrice() {
-		return productId.getPrice() * quantity;
-	}
 
 	public Product getProductId() {
 		return productId;

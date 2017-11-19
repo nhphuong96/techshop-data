@@ -10,20 +10,20 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import com.techshop.api.dao.OrderDetailDAO;
-import com.techshop.api.entity.OrderDetail;
+import com.techshop.api.dao.PaymentDAO;
+import com.techshop.api.entity.Payment;
 import com.techshop.api.util.Result;
 
-@Path("/orderdetail")
-public class OrderDetailController {
+@Path("/payment")
+public class PaymentController {
 	@EJB
-	private OrderDetailDAO orderDetailDAO;
+	private PaymentDAO paymentDAO;
 	
 	@POST
 	@Path("/save")
 	@Produces("application/json; charset=UTF-8")
-	public Response save(OrderDetail object) {
-		Result<OrderDetail> saveResult = orderDetailDAO.save(object);
+	public Response save(Payment object) {
+		Result<Payment> saveResult = paymentDAO.save(object);
 		return Response.status(200).entity(saveResult).build();
 	}
 	
@@ -31,7 +31,7 @@ public class OrderDetailController {
 	@Path("/deleteById")
 	@Produces("application/json; charset=UTF-8")
 	public Response deleteById(@QueryParam("id") Long id) {
-		Result<Long> deleteResult = orderDetailDAO.delete(id);
+		Result<Long> deleteResult = paymentDAO.delete(id);
 		return Response.status(200).entity(deleteResult).build();
 	}
 	
@@ -39,7 +39,7 @@ public class OrderDetailController {
 	@Path("/get")
 	@Produces("application/json; charset=UTF-8")
 	public Response get(@QueryParam("id") Long id) {
-		Result<OrderDetail> getResult = orderDetailDAO.findOne(id);
+		Result<Payment> getResult = paymentDAO.findOne(id);
 		if (getResult.getSuccess() == false) {
 			return Response.status(200).entity(getResult).build();
 		}
@@ -50,7 +50,7 @@ public class OrderDetailController {
 	@Path("/getAll")
 	@Produces("application/json; charset=UTF-8")
 	public Response getAll() {
-		Result<List<OrderDetail>> getAllResult = orderDetailDAO.findAll();
+		Result<List<Payment>> getAllResult = paymentDAO.findAll();
 		if (getAllResult.getSuccess() == false) {
 			return Response.status(200).entity(getAllResult).build();
 		}
@@ -60,11 +60,11 @@ public class OrderDetailController {
 	@POST
 	@Path("/update")
 	@Produces("application/json; charset=UTF-8")
-	public Response update(OrderDetail order) {
-		if (order.getOrderId().getId() == null) {
+	public Response update(Payment order) {
+		if (order.getId() == null) {
 			return Response.status(200).entity(new Result<>(null, "Primary key is required", false)).build();
 		}
-		Result<OrderDetail> updateResult = orderDetailDAO.update(order);
+		Result<Payment> updateResult = paymentDAO.update(order);
 		return Response.status(200).entity(updateResult).build();
 	}
 }

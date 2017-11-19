@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductInformation {
+	private Long id;
 	private String productName;
 	private String alias;
 	private String descriptionHTML;

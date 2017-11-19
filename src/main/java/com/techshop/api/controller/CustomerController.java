@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import com.techshop.api.dao.CustomerDAO;
 import com.techshop.api.entity.Customer;
+import com.techshop.api.util.EntityResult;
 import com.techshop.api.util.Result;
 
 @Path("/customer")
@@ -59,7 +60,8 @@ public class CustomerController {
 			return Response.status(200).entity(new Result<>(null, "Conflict primary key", false)).build();
 		}
 		Result<Customer> saveResult = customerDAO.save(object);
-		return Response.status(200).entity(saveResult).build();
+		EntityResult id = new EntityResult(saveResult.getData().getId(), "success", true);
+		return Response.status(200).entity(id).build();
 	}
 	
 	@POST

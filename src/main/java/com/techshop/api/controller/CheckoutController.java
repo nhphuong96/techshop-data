@@ -9,10 +9,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.techshop.api.entity.Category;
-import com.techshop.api.entity.Order;
 import com.techshop.api.model.CheckoutInformation;
 import com.techshop.api.service.CheckoutService;
-import com.techshop.api.util.Result;
+import com.techshop.api.util.EntityResult;
 
 @Path("/checkout")
 public class CheckoutController {
@@ -56,8 +55,8 @@ public class CheckoutController {
 	@Path("/save")
 	@Produces("application/json; charset=UTF-8")
 	public Response save(CheckoutInformation object) {
-		Result<Order> saveResult = checkoutService.save(object);
-		return Response.status(200).entity(saveResult.getData().getId()).build();
+		EntityResult saveResult = checkoutService.save(object);
+		return Response.status(200).entity(saveResult).build();
 	}
 	
 	@POST

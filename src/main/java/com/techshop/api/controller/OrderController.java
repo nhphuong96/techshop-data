@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import com.techshop.api.dao.OrderDAO;
 import com.techshop.api.entity.Order;
+import com.techshop.api.util.EntityResult;
 import com.techshop.api.util.Result;
 
 @Path("/order")
@@ -24,7 +25,8 @@ public class OrderController {
 	@Produces("application/json; charset=UTF-8")
 	public Response save(Order object) {
 		Result<Order> saveResult = orderDAO.save(object);
-		return Response.status(200).entity(saveResult).build();
+		EntityResult result = new EntityResult(saveResult.getData().getId(), "success", true);
+		return Response.status(200).entity(result).build();
 	}
 	
 	@POST

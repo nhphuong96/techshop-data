@@ -1,35 +1,59 @@
 package com.techshop.api.model;
 
-import java.time.LocalDate;
 import java.util.List;
-
-import com.techshop.api.entity.OrderStatus;
 
 public class CheckoutInformation {
 	
-	private LocalDate orderDate;
-	private OrderStatus orderStatus;
-	private LocalDate shipDate;
+	private String fullname;
+	private String email;
+	private String address;
+	private String city;
+	private String phoneNumber;
+	private String company;
+	private String deliveryType;
 	private List<OrderProductInformation> orderDetails;
 	
-	public LocalDate getShipDate() {
-		return shipDate;
+	public String getFullname() {
+		return fullname;
 	}
-	public void setShipDate(LocalDate shipDate) {
-		this.shipDate = shipDate;
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
-	
-	public LocalDate getOrderDate() {
-		return orderDate;
+	public String getEmail() {
+		return email;
 	}
-	public void setOrderDate(LocalDate orderDate) {
-		this.orderDate = orderDate;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public OrderStatus getOrderStatus() {
-		return orderStatus;
+	public String getAddress() {
+		return address;
 	}
-	public void setOrderStatus(OrderStatus orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	public String getDeliveryType() {
+		return deliveryType;
+	}
+	public void setDeliveryType(String deliveryType) {
+		this.deliveryType = deliveryType;
 	}
 	public List<OrderProductInformation> getOrderDetails() {
 		return orderDetails;

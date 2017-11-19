@@ -58,6 +58,7 @@ public class ProductConverterImpl implements ProductConverter {
 	public Result<ProductInformation> convert(Product product) {
 		ProductInformation pi = new ProductInformation();
 		pi.setAlias(product.getAlias());
+		pi.setId(product.getId());
 		pi.setProductName(product.getName());
 		pi.setImage1(product.getImage1());
 		pi.setImage2(product.getImage2());
